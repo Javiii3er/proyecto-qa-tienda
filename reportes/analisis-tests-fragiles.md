@@ -20,8 +20,9 @@ aplicación hubiera cambiado. Se identificaron tres causas raíz distintas:
 | 3 | El test navegaba antes de que terminara el envío del formulario | Condición de carrera (falta de espera) | 1 test, de forma intermitente |
 | 4 | Timeouts por defecto menores que la lentitud real del servidor | Espera inadecuada (configuración) | Tests distintos en cada corrida |
 | 5 | `force: true` desactivaba la espera automática | Locator poco robusto | 1 test, de forma intermitente |
+| 6 | Un script del selector de fechas (no usado) se quedaba sin respuesta | Dependencia de un recurso externo | Registro, edición de perfil y preparación de cuentas |
 
-El caso principal es el **#1**. Los casos #2 a #5 aparecieron mientras se verificaba la
+El caso principal es el **#1**. Los casos #2 a #6 aparecieron mientras se verificaba la
 corrección del #1.
 
 ---
@@ -244,7 +245,7 @@ no ocultara un fallo intermitente.
 | Tras corregir el caso 3 | 1 | 4 fallos (caso 4) — se detuvo la serie |
 | Tras corregir el caso 4 | 1 | 1 fallo (caso 5) — se detuvo la serie |
 | Tras corregir el caso 5 | 3 | 1, 1 y 2 fallos (ver "Fallos restantes") |
-| Corrida oficial del 9/oct, con `retries: 1` | 1 | PENDIENTE |
+| Corrida oficial del 9/oct, con `retries: 1` (tras el caso 6) | 1 | 24 pasaron al primer intento, 5 pasaron al reintentar (*flaky*), 1 falló dos veces: `page.goto` de la página de producto sin respuesta en 60 s. Duró 13.6 min (normalmente ~5) por la lentitud del servidor ese día. Reporte en `reportes/playwright-report/` |
 
 ### Fallos restantes: causa externa al proyecto
 
@@ -263,7 +264,20 @@ los que se pudieron analizar no venían del código de la suite:
   cuentas (`helpers/global-setup.ts`) falló 3 veces seguidas por eso, y se le agregaron
   reintentos y una espera de 60 s por página.
 
-Estos fallos no se pueden corregir desde la suite, porque dependen del servidor compartido.
+### Caso 6 — Un script que no usamos bloqueaba la carga de la página
+
+Al depurar la preparación de cuentas se registraron las peticiones pendientes cuando
+`page.goto` agotaba el tiempo. Con frecuencia la que nunca terminaba era
+`moment.min.js` (o `moment-with-locales.min.js`), el script del selector de fechas que
+cargan las páginas de registro y de edición de perfil. Medido con `curl`, ese archivo
+tardó más de 30 s sin terminar mientras las páginas respondían en 1-3 s.
+
+Como ningún test usa campos de fecha, se bloquean esos scripts en todos los tests y en la
+preparación de cuentas (`helpers/red.ts`, aplicado en el fixture `context` de
+`fixtures/index.ts` y en `helpers/global-setup.ts`). Así la carga de la página ya no depende
+de un archivo que el servidor deja colgado y que no tiene relación con lo que se prueba.
+
+Los demás fallos de la red del servidor no se pueden corregir desde la suite.
 Para eso se mantiene `retries: 1`, como pide la guía: un fallo puntual del servidor se
 reintenta, mientras que un error real del test fallaría en los dos intentos.
 

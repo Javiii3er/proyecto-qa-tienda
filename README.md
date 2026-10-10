@@ -18,7 +18,7 @@ reutilizables, evidencias automáticas y ejecución multi-navegador (Chromium y 
 ## Instalación
 
 ```bash
-git clone <url-del-repo>
+git clone https://github.com/Javiii3er/proyecto-qa-tienda.git
 cd proyecto-qa-tienda
 npm install          # respeta .npmrc (ignore-scripts=true)
 npx playwright install   # instalación explícita de navegadores

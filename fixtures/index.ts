@@ -2,6 +2,7 @@ import { test as base } from '@playwright/test';
 import { LoginPage } from '../pages/LoginPage';
 import { AccountPage } from '../pages/AccountPage';
 import { loginAs } from '../helpers/auth';
+import { bloquearScriptsDeFecha } from '../helpers/red';
 import { cuentasGrupo, Usuario } from '../test-data/users';
 
 type AppFixtures = {
@@ -11,6 +12,12 @@ type AppFixtures = {
 };
 
 export const test = base.extend<AppFixtures>({
+  // Todos los tests usan un contexto sin los scripts de fecha (helpers/red.ts)
+  context: async ({ context }, use) => {
+    await bloquearScriptsDeFecha(context);
+    await use(context);
+  },
+
   loginPage: async ({ page }, use) => {
     const loginPage = new LoginPage(page);
     await loginPage.navigate();

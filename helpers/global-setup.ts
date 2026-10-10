@@ -2,6 +2,7 @@ import { chromium, Browser, FullConfig } from '@playwright/test';
 import { RegisterPage } from '../pages/RegisterPage';
 import { LoginPage } from '../pages/LoginPage';
 import { cuentasGrupo, Usuario } from '../test-data/users';
+import { bloquearScriptsDeFecha } from './red';
 
 /**
  * Se ejecuta una vez antes de toda la suite (globalSetup en
@@ -48,6 +49,7 @@ async function prepararCuenta(
   // sesión iniciada.
   const registro = await browser.newContext({ baseURL });
   registro.setDefaultTimeout(ESPERA_MS);
+  await bloquearScriptsDeFecha(registro);
   const registerPage = new RegisterPage(await registro.newPage());
   await registerPage.navigate();
   await registerPage.register(cuenta);
@@ -60,6 +62,7 @@ async function prepararCuenta(
 
   const login = await browser.newContext({ baseURL });
   login.setDefaultTimeout(ESPERA_MS);
+  await bloquearScriptsDeFecha(login);
   const loginPage = new LoginPage(await login.newPage());
   await loginPage.navigate();
   await loginPage.login(cuenta.email, cuenta.password);
