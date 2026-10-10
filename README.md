@@ -55,7 +55,9 @@ proyecto-qa-tienda/
 ├── test-data/
 │   └── users.ts             # cuentas de prueba (una por navegador) y datos ficticios
 ├── reportes/
-│   └── analisis-tests-fragiles.md
+│   ├── analisis-tests-fragiles.md
+│   ├── defectos.md
+│   └── playwright-report/   # último reporte HTML generado
 ├── evidencias/
 ├── docs/
 │   └── cronograma.md        # reparto de trabajo del grupo
@@ -67,5 +69,26 @@ proyecto-qa-tienda/
 
 ## Defectos encontrados
 
-<!-- TODO: completar con cada defecto y su enlace al GitHub Issue, ej.: -->
-<!-- - DR-001: [título breve] — https://github.com/usuario/repo/issues/1 -->
+Detalle completo (pasos, resultado esperado/obtenido, severidad, prioridad) en
+[`reportes/defectos.md`](reportes/defectos.md); capturas en [`evidencias/`](evidencias/).
+
+| ID | Defecto | Severidad | Issue |
+|---|---|---|---|
+| DR-001 | La búsqueda con `%` devuelve todo el catálogo | Media | PENDIENTE |
+| DR-002 | El teléfono acepta letras y símbolos en el registro | Media | PENDIENTE |
+| DR-003 | El registro acepta contraseñas triviales como `1234` | Media | PENDIENTE |
+| DR-004 | Nombre y apellido aceptan solo números o etiquetas HTML | Baja | PENDIENTE |
+| DR-005 | El contador de "Desktops (13)" no coincide con los 12 productos listados | Baja | PENDIENTE |
+
+## Análisis de estabilidad
+
+Los tests inestables encontrados, su diagnóstico y la corrección aplicada están en
+[`reportes/analisis-tests-fragiles.md`](reportes/analisis-tests-fragiles.md).
+
+## Reporte HTML
+
+El último reporte HTML de la suite está en `reportes/playwright-report/`. Para abrirlo:
+
+```bash
+npx playwright show-report reportes/playwright-report
+```
