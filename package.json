@@ -1,0 +1,17 @@
+{
+  "name": "proyecto-qa-tienda",
+  "version": "1.0.0",
+  "description": "Proyecto Final - Aseguramiento de la Calidad del Software - Curso 048 - Grupo 7 (Variante 2: OpenCart Demo Abstracta)",
+  "scripts": {
+    "test": "playwright test",
+    "test:smoke": "playwright test --grep \"@smoke\"",
+    "test:regression": "playwright test --grep \"@regression\"",
+    "test:firefox": "playwright test --project=firefox",
+    "report": "playwright show-report"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.47.0",
+    "@types/node": "^22.0.0",
+    "typescript": "^5.5.0"
+  }
+}
