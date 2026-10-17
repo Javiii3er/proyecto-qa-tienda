@@ -3,12 +3,7 @@ import { RegisterPage } from '../pages/RegisterPage';
 import { nuevoUsuario } from '../test-data/users';
 
 /**
- * Regresión de autenticación — selectores verificados en vivo.
- * NOTA sobre el test 4 (campos vacíos): no confirmamos en vivo si OpenCart
- * bloquea el submit con validación HTML5 del navegador o si deja pasar la
- * petición al servidor. Verifiquen esto al correrlo y ajusten la aserción
- * si hace falta (puede que el test deba revisar validez del campo en vez
- * de un mensaje de error del servidor).
+ * Regresión de autenticación — selectores y mensajes verificados en vivo.
  *
  * NOTA sobre los logins fallidos: OpenCart cuenta los intentos fallidos por
  * email y lo bloquea 1 hora al pasar el límite (un login exitoso reinicia el
@@ -36,9 +31,10 @@ test.describe('Regresión - Autenticación', () => {
 
   test('Inicio de sesión con campos vacíos @regression', async ({ loginPage }) => {
     await loginPage.login('', '');
-    // TODO: confirmar si aparece el mismo mensaje de error del servidor
-    // o si el navegador bloquea el envío por los campos requeridos.
+    // Los campos no tienen validación del navegador (atributo required): el
+    // formulario llega al servidor, que responde con el mismo mensaje genérico
     await expect(loginPage.page).toHaveURL(/route=account\/login/);
+    await loginPage.expectLoginError('No match for E-Mail Address and/or Password');
   });
 
   test('Registro de un usuario válido @regression', async ({ page }) => {

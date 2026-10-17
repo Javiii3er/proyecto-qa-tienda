@@ -6,12 +6,7 @@ import { AccountPage } from '../pages/AccountPage';
 import { PRODUCTO_PRUEBA_URL, nuevoUsuario } from '../test-data/users';
 
 /**
- * Regresión de reseñas y perfil — selectores verificados en vivo.
- * NOTA sobre los tests de reseñas: confirmamos que el formulario (nombre,
- * texto, estrellas, botón) existe y es clickeable, pero NO confirmamos el
- * mensaje de confirmación exacto que muestra OpenCart al enviar — suele ser
- * un .alert-success con texto sobre "revisión" pendiente de aprobación.
- * Verifíquenlo al correr el test y ajusten el texto esperado.
+ * Regresión de reseñas y perfil — selectores y mensajes verificados en vivo.
  */
 
 test.describe('Regresión - Reseñas y perfil', () => {
@@ -29,8 +24,8 @@ test.describe('Regresión - Reseñas y perfil', () => {
     await page.goto(PRODUCTO_PRUEBA_URL, { waitUntil: 'domcontentloaded' });
     await productPage.openReviewsTab();
     await productPage.submitReview('Grupo 7', 'Reseña de prueba generada automáticamente.');
-    // TODO: confirmar selector/texto exacto del mensaje de confirmación
-    await expect(page.locator('.alert')).toBeVisible();
+    // OpenCart no publica la reseña de inmediato: la deja pendiente de aprobación
+    await expect(page.locator('.alert-success')).toContainText('submitted to the webmaster for approval');
   });
 
   test('Editar un campo del perfil y verificar persistencia @regression', async ({ accountPage, page }) => {
