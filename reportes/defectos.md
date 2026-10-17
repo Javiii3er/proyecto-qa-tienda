@@ -14,8 +14,8 @@ Evidencias en [`evidencias/`](../evidencias/).
 | DR-001 | La búsqueda con `%` devuelve todo el catálogo | F08 | Media | P3 | Javier Rivera | PENDIENTE |
 | DR-002 | El teléfono acepta letras y símbolos en el registro | F01 / F09 | Media | P2 | Javier Rivera | PENDIENTE |
 | DR-003 | El registro acepta contraseñas triviales como `1234` | F01 / F05 | Media | P2 | Javier Rivera | PENDIENTE |
-| DR-004 | Nombre y apellido aceptan solo números o etiquetas HTML | F01 / F09 | Baja | P3 | Karla Rodríguez | PENDIENTE |
-| DR-005 | El contador de "Desktops (13)" no coincide con los 12 productos listados | F08 | Baja | P3 | Karla Rodríguez | PENDIENTE |
+| DR-004 | Nombre y apellido aceptan solo números o etiquetas HTML | F01 / F09 | Baja | P3 | Javier Rivera | PENDIENTE |
+| DR-005 | El contador de "Desktops (13)" no coincide con los 12 productos listados | F08 | Baja | P3 | Javier Rivera | PENDIENTE |
 
 ---
 
@@ -120,7 +120,7 @@ adivinación.
 |---|---|
 | ID | DR-004 |
 | Fecha | 09/10/2026 |
-| Descubierto por | Karla Rodríguez |
+| Descubierto por | Javier Rivera |
 | Funcionalidad | F01 — Registro de usuario / F09 — Validaciones |
 | Caso de prueba origen | TC-N04 (caracteres especiales en campos de texto libre) |
 | Tipo | Exploratorio |
@@ -153,7 +153,7 @@ apellidos con etiquetas HTML y símbolos.
 |---|---|
 | ID | DR-005 |
 | Fecha | 09/10/2026 |
-| Descubierto por | Karla Rodríguez |
+| Descubierto por | Javier Rivera |
 | Funcionalidad | F08 — Navegación y búsqueda de productos |
 | Caso de prueba origen | TC-N01 (navegar por las categorías del menú) |
 | Tipo | Exploratorio |

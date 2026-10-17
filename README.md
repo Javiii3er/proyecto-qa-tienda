@@ -51,10 +51,12 @@ proyecto-qa-tienda/
 │   └── index.ts
 ├── helpers/
 │   ├── auth.ts
-│   └── global-setup.ts      # crea/verifica las cuentas de prueba antes de cada corrida
+│   ├── global-setup.ts      # crea/verifica las cuentas de prueba antes de cada corrida
+│   └── red.ts               # bloquea scripts del sitio que se cuelgan y no se usan
 ├── test-data/
 │   └── users.ts             # cuentas de prueba (una por navegador) y datos ficticios
 ├── reportes/
+│   ├── 048_Casos_de_Prueba_Grupo7.xlsx   # 21 casos de prueba manuales
 │   ├── analisis-tests-fragiles.md
 │   ├── defectos.md
 │   └── playwright-report/   # último reporte HTML generado
@@ -66,6 +68,13 @@ proyecto-qa-tienda/
 ├── tsconfig.json
 └── README.md
 ```
+
+## Casos de prueba manuales
+
+Los 21 casos de prueba (F01–F09), elaborados con la plantilla del catedrático, están en
+[`reportes/048_Casos_de_Prueba_Grupo7.xlsx`](reportes/048_Casos_de_Prueba_Grupo7.xlsx).
+La hoja *Resumen* calcula automáticamente los casos ejecutados, OK, FALLO y BLOQUEADO por
+funcionalidad.
 
 ## Defectos encontrados
 
