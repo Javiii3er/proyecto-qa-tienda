@@ -11,11 +11,11 @@ Evidencias en [`evidencias/`](../evidencias/).
 
 | ID | Título | Funcionalidad | Severidad | Prioridad | Descubierto por | Issue |
 |---|---|---|---|---|---|---|
-| DR-001 | La búsqueda con `%` devuelve todo el catálogo | F08 | Media | P3 | Javier Rivera | PENDIENTE |
-| DR-002 | El teléfono acepta letras y símbolos en el registro | F01 / F09 | Media | P2 | Javier Rivera | PENDIENTE |
-| DR-003 | El registro acepta contraseñas triviales como `1234` | F01 / F05 | Media | P2 | Javier Rivera | PENDIENTE |
-| DR-004 | Nombre y apellido aceptan solo números o etiquetas HTML | F01 / F09 | Baja | P3 | Javier Rivera | PENDIENTE |
-| DR-005 | El contador de "Desktops (13)" no coincide con los 12 productos listados | F08 | Baja | P3 | Javier Rivera | PENDIENTE |
+| DR-001 | La búsqueda con `%` devuelve todo el catálogo | F08 | Media | P3 | Javier Rivera | [#1](https://github.com/Javiii3er/proyecto-qa-tienda/issues/1) |
+| DR-002 | El teléfono acepta letras y símbolos en el registro | F01 / F09 | Media | P2 | Javier Rivera | [#2](https://github.com/Javiii3er/proyecto-qa-tienda/issues/2) |
+| DR-003 | El registro acepta contraseñas triviales como `1234` | F01 / F05 | Media | P2 | Javier Rivera | [#3](https://github.com/Javiii3er/proyecto-qa-tienda/issues/3) |
+| DR-004 | Nombre y apellido aceptan solo números o etiquetas HTML | F01 / F09 | Baja | P3 | Javier Rivera | [#4](https://github.com/Javiii3er/proyecto-qa-tienda/issues/4) |
+| DR-005 | El contador de "Desktops (13)" no coincide con los 12 productos listados | F08 | Baja | P3 | Javier Rivera | [#5](https://github.com/Javiii3er/proyecto-qa-tienda/issues/5) |
 
 ---
 
@@ -34,7 +34,7 @@ Evidencias en [`evidencias/`](../evidencias/).
 | Ambiente | https://opencart.abstracta.us · Chromium · Windows 11 |
 | Evidencia | `evidencias/DR-001-busqueda-porcentaje.png` |
 | Estado | Abierto |
-| Enlace al Issue | PENDIENTE |
+| Enlace al Issue | [#1](https://github.com/Javiii3er/proyecto-qa-tienda/issues/1) |
 
 **Pasos para reproducir**
 1. Ir a https://opencart.abstracta.us
@@ -65,7 +65,7 @@ en vez de como texto.
 | Ambiente | https://opencart.abstracta.us · Chromium · Windows 11 |
 | Evidencia | `evidencias/DR-002-DR-003-telefono-y-contrasena.png` |
 | Estado | Abierto |
-| Enlace al Issue | PENDIENTE |
+| Enlace al Issue | [#2](https://github.com/Javiii3er/proyecto-qa-tienda/issues/2) |
 
 **Pasos para reproducir**
 1. Ir a https://opencart.abstracta.us/index.php?route=account/register
@@ -99,7 +99,7 @@ la confirmación de contraseña, lo que indica que `abc-xyz` se acepta como tel�
 | Ambiente | https://opencart.abstracta.us · Chromium · Windows 11 |
 | Evidencia | `evidencias/DR-002-DR-003-telefono-y-contrasena.png` |
 | Estado | Abierto |
-| Enlace al Issue | PENDIENTE |
+| Enlace al Issue | [#3](https://github.com/Javiii3er/proyecto-qa-tienda/issues/3) |
 
 **Pasos para reproducir**
 1. Seguir los pasos 1 a 5 de DR-002 (Password `1234`, Password Confirm `9999`).
@@ -129,7 +129,7 @@ adivinación.
 | Ambiente | https://opencart.abstracta.us · Chromium · Windows 11 |
 | Evidencia | `evidencias/DR-004-nombre-numeros-simbolos.png` |
 | Estado | Abierto |
-| Enlace al Issue | PENDIENTE |
+| Enlace al Issue | [#4](https://github.com/Javiii3er/proyecto-qa-tienda/issues/4) |
 
 **Pasos para reproducir**
 1. Ir a https://opencart.abstracta.us/index.php?route=account/register
@@ -162,7 +162,7 @@ apellidos con etiquetas HTML y símbolos.
 | Ambiente | https://opencart.abstracta.us · Chromium · Windows 11 |
 | Evidencia | `evidencias/DR-005-contador-desktops.png` |
 | Estado | Abierto |
-| Enlace al Issue | PENDIENTE |
+| Enlace al Issue | [#5](https://github.com/Javiii3er/proyecto-qa-tienda/issues/5) |
 
 **Pasos para reproducir**
 1. Ir a https://opencart.abstracta.us

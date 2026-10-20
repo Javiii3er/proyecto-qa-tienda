@@ -114,11 +114,11 @@ Detalle completo (pasos, resultado esperado/obtenido, severidad, prioridad) en
 
 | ID | Defecto | Severidad | Issue |
 |---|---|---|---|
-| DR-001 | La búsqueda con `%` devuelve todo el catálogo | Media | PENDIENTE |
-| DR-002 | El teléfono acepta letras y símbolos en el registro | Media | PENDIENTE |
-| DR-003 | El registro acepta contraseñas triviales como `1234` | Media | PENDIENTE |
-| DR-004 | Nombre y apellido aceptan solo números o etiquetas HTML | Baja | PENDIENTE |
-| DR-005 | El contador de "Desktops (13)" no coincide con los 12 productos listados | Baja | PENDIENTE |
+| DR-001 | La búsqueda con `%` devuelve todo el catálogo | Media | [#1](https://github.com/Javiii3er/proyecto-qa-tienda/issues/1) |
+| DR-002 | El teléfono acepta letras y símbolos en el registro | Media | [#2](https://github.com/Javiii3er/proyecto-qa-tienda/issues/2) |
+| DR-003 | El registro acepta contraseñas triviales como `1234` | Media | [#3](https://github.com/Javiii3er/proyecto-qa-tienda/issues/3) |
+| DR-004 | Nombre y apellido aceptan solo números o etiquetas HTML | Baja | [#4](https://github.com/Javiii3er/proyecto-qa-tienda/issues/4) |
+| DR-005 | El contador de "Desktops (13)" no coincide con los 12 productos listados | Baja | [#5](https://github.com/Javiii3er/proyecto-qa-tienda/issues/5) |
 
 ## Análisis de estabilidad
 
