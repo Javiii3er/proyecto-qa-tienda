@@ -2,6 +2,8 @@
 
 **Grupo 7** · Variante 2: OpenCart Demo de Abstracta (http://opencart.abstracta.us/)
 
+[![Pruebas Playwright](https://github.com/Javiii3er/proyecto-qa-tienda/actions/workflows/playwright.yml/badge.svg)](https://github.com/Javiii3er/proyecto-qa-tienda/actions/workflows/playwright.yml)
+
 ## Integrantes
 
 | Nombre | Carné |
@@ -33,20 +35,37 @@ npx playwright test --project=firefox      # solo en Firefox
 npx playwright show-report                 # reporte HTML comparativo
 ```
 
+La suite tiene 23 pruebas por navegador (46 ejecuciones): 5 smoke, 6 de autenticación,
+4 de reseñas y perfil, y 8 de navegación generadas por un **test parametrizado** que recorre
+las categorías del catálogo. Desktops y Components están marcadas con `test.fail()` porque
+reproducen el defecto conocido DR-005; Playwright las cuenta como fallos *esperados*.
+
+## Integración continua (GitHub Actions)
+
+El workflow [`.github/workflows/playwright.yml`](.github/workflows/playwright.yml) ejecuta la
+suite completa en Chromium y Firefox **en cada push y pull request a `main`** (también puede
+lanzarse a mano desde la pestaña *Actions*). Instala las dependencias con `npm ci`, que respeta
+el `.npmrc` (`ignore-scripts=true`), instala los navegadores de forma explícita, verifica los
+tipos de TypeScript y guarda el reporte HTML como artefacto descargable de cada ejecución.
+
 ## Estructura del repositorio
 
 ```
 proyecto-qa-tienda/
+├── .github/workflows/
+│   └── playwright.yml       # integración continua (GitHub Actions)
 ├── tests/
 │   ├── smoke.spec.ts
 │   ├── regression-auth.spec.ts
-│   └── regression-reviews.spec.ts
+│   ├── regression-reviews.spec.ts
+│   └── regression-navegacion.spec.ts   # test parametrizado: 8 categorías
 ├── pages/
 │   ├── HomePage.ts
 │   ├── LoginPage.ts
 │   ├── RegisterPage.ts
 │   ├── AccountPage.ts
-│   └── ProductPage.ts
+│   ├── ProductPage.ts
+│   └── CategoryPage.ts
 ├── fixtures/
 │   └── index.ts
 ├── helpers/

@@ -1,0 +1,54 @@
+# Integración continua: ejecuta la suite de Playwright en cada push y pull request a main.
+# Bono del enunciado (sección 6.3): "GitHub Actions ejecutando la suite en cada push".
+name: Pruebas Playwright
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch: # permite ejecutarla a mano desde la pestaña Actions
+
+jobs:
+  pruebas:
+    name: Suite en Chromium y Firefox
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+
+    steps:
+      - name: Descargar el código
+        uses: actions/checkout@v4
+
+      - name: Instalar Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      # npm ci respeta el .npmrc (ignore-scripts=true): no se ejecutan scripts de
+      # post-instalación de las dependencias, igual que en la instalación local.
+      - name: Instalar dependencias
+        run: npm ci
+
+      # Instalación explícita de los navegadores (y sus librerías del sistema),
+      # necesaria precisamente porque los scripts de post-instalación están bloqueados.
+      - name: Instalar navegadores
+        run: npx playwright install --with-deps chromium firefox
+
+      - name: Verificar tipos de TypeScript
+        run: npx tsc --noEmit
+
+      # El sitio de práctica es compartido y a veces responde lento (ver
+      # reportes/analisis-tests-fragiles.md); se mantiene retries: 1 del config.
+      - name: Ejecutar la suite
+        run: npx playwright test
+
+      # El reporte HTML se guarda siempre, también si alguna prueba falla,
+      # para poder revisarlo desde la ejecución en GitHub.
+      - name: Guardar el reporte HTML
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: reporte-playwright
+          path: playwright-report/
+          retention-days: 14
