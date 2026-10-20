@@ -176,6 +176,12 @@ que se muestran en la categoría.
 productos ("Showing 1 to 12 of 12 (1 Pages)"). El cliente ve un número de productos que no
 puede encontrar.
 
+**Actualización (16/10/2026):** el test parametrizado de navegación
+(`tests/regression-navegacion.spec.ts`) revisó las 8 categorías y encontró el mismo problema en
+**Components**: el menú dice "Components (2)" y la categoría no lista ningún producto. En ambos
+casos el contador parece sumar productos de las subcategorías (*Mac (1)* y *Monitors (2)*) que
+el listado de la categoría principal no muestra. Las otras 6 categorías coinciden.
+
 ---
 
 ## Cómo crear cada Issue en GitHub
