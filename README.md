@@ -32,13 +32,23 @@ npx playwright install   # instalación explícita de navegadores
 npx playwright test --grep "@smoke"        # solo smoke tests
 npx playwright test --grep "@regression"   # solo regression tests
 npx playwright test --project=firefox      # solo en Firefox
+npx playwright test --grep "@a11y"         # solo pruebas de accesibilidad (axe-core)
 npx playwright show-report                 # reporte HTML comparativo
 ```
 
-La suite tiene 23 pruebas por navegador (46 ejecuciones): 5 smoke, 6 de autenticación,
-4 de reseñas y perfil, y 8 de navegación generadas por un **test parametrizado** que recorre
-las categorías del catálogo. Desktops y Components están marcadas con `test.fail()` porque
-reproducen el defecto conocido DR-005; Playwright las cuenta como fallos *esperados*.
+La suite tiene 23 pruebas funcionales por navegador (46 ejecuciones): 5 smoke, 6 de
+autenticación, 4 de reseñas y perfil, y 8 de navegación generadas por un **test parametrizado**
+que recorre las categorías del catálogo. Desktops y Components están marcadas con `test.fail()`
+porque reproducen el defecto conocido DR-005; Playwright las cuenta como fallos *esperados*.
+
+## Accesibilidad (axe-core)
+
+[`tests/accesibilidad.spec.ts`](tests/accesibilidad.spec.ts) analiza 5 páginas (inicio, login,
+registro, producto y búsqueda) contra las reglas **WCAG 2.0 A y AA** con
+[`@axe-core/playwright`](https://playwright.dev/docs/accessibility-testing). Adjunta el
+resultado completo de cada página al reporte HTML y falla solo si aparece un problema nuevo
+respecto a la línea base registrada. Hallazgos y recomendaciones en
+[`reportes/accesibilidad.md`](reportes/accesibilidad.md).
 
 ## Integración continua (GitHub Actions)
 
@@ -58,7 +68,8 @@ proyecto-qa-tienda/
 │   ├── smoke.spec.ts
 │   ├── regression-auth.spec.ts
 │   ├── regression-reviews.spec.ts
-│   └── regression-navegacion.spec.ts   # test parametrizado: 8 categorías
+│   ├── regression-navegacion.spec.ts   # test parametrizado: 8 categorías
+│   └── accesibilidad.spec.ts           # axe-core, WCAG 2.0 A y AA
 ├── pages/
 │   ├── HomePage.ts
 │   ├── LoginPage.ts
@@ -76,6 +87,7 @@ proyecto-qa-tienda/
 │   └── users.ts             # cuentas de prueba (una por navegador) y datos ficticios
 ├── reportes/
 │   ├── 048_Casos_de_Prueba_Grupo7.xlsx   # 21 casos de prueba manuales
+│   ├── accesibilidad.md
 │   ├── analisis-tests-fragiles.md
 │   ├── defectos.md
 │   └── playwright-report/   # último reporte HTML generado
