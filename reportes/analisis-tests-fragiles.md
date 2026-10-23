@@ -245,7 +245,9 @@ no ocultara un fallo intermitente.
 | Tras corregir el caso 3 | 1 | 4 fallos (caso 4) — se detuvo la serie |
 | Tras corregir el caso 4 | 1 | 1 fallo (caso 5) — se detuvo la serie |
 | Tras corregir el caso 5 | 3 | 1, 1 y 2 fallos (ver "Fallos restantes") |
-| Corrida oficial del 9/oct, con `retries: 1` (tras el caso 6) | 1 | 24 pasaron al primer intento, 5 pasaron al reintentar (*flaky*), 1 falló dos veces: `page.goto` de la página de producto sin respuesta en 60 s. Duró 13.6 min (normalmente ~5) por la lentitud del servidor ese día. Reporte en `reportes/playwright-report/` |
+| Corrida oficial del 9/oct, con `retries: 1` (tras el caso 6) | 1 | 24 pasaron al primer intento, 5 pasaron al reintentar (*flaky*), 1 falló dos veces: `page.goto` de la página de producto sin respuesta en 60 s. Duró 13.6 min (normalmente ~5) por la lentitud del servidor ese día |
+| GitHub Actions, del 19 al 22/oct (6 corridas en la nube, `retries: 1`) | 6 | **6 de 6 en verde**, de 4 a 5 min cada una |
+| **Corrida final del 22/oct** (`retries: 1`, 51 pruebas con axe-core) | 1 | **50 pasaron, 1 flaky, 0 fallaron**, 5 omitidas (accesibilidad en Firefox). El *flaky* fue "contraseña incorrecta" en Firefox: el primer intento perdió la conexión (`NS_ERROR_NET_TIMEOUT`) y pasó al reintentar. Duró 6.7 min. Reporte en `reportes/playwright-report/` |
 
 ### Fallos restantes: causa externa al proyecto
 
